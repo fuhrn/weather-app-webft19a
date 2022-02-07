@@ -2,24 +2,23 @@ import React from 'react';
 
 export default function Card({max, min, name, img, onClose}) {
     // acá va tu código
+    function handleOnclose() {
+        if (typeof onClose === 'function') onClose();
+    }
     return (
         <div>
-            <button onClick={onClose}>X</button>
+            <button onClick={handleOnclose}>X</button>
+            <span>{name}</span>
             <div>
-                <span>{name}</span>
+                <span>Min</span>
+                <span>{min}</span>
             </div>
             <div>
-                <div>
-                    <span>Min</span>
-                    <span>{min}</span>
-                </div>
-                <div>
-                    <span>Max</span>
-                    <span>{max}</span>
-                </div>
-                <div>
-                    <img src={`http://openweathermap.org/img/wn/${img}@2x.png`} alt=""/>
-                </div>
+                <span>Max</span>
+                <span>{max}</span>
+            </div>
+            <div>
+                <img src={`http://openweathermap.org/img/wn/${img}@2x.png`} alt=""/>
             </div>
         </div>
     )
