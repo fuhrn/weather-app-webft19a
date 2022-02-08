@@ -5,21 +5,24 @@ import {IoSearchOutline} from "react-icons/io5";
 export default function SearchBar({onSearch}) {
     // acá va tu código
 
-    function handleOnSearch() {
+    function handleOnSearch(event) {
+        event.preventDefault();
         if (typeof onSearch === 'function') {
             const input = document.getElementById("search-bar-input");
             onSearch(input.value);
+            input.value = '';
         }
     }
 
     return (
-        <div className={styles.searchBar}>
+        <form className={styles.searchBar} onSubmit={handleOnSearch}>
+            {/*ahora al hacer enter en el input, envia el formulario a handleOnSearch*/}
             <input
                 id="search-bar-input"
                 type="text"
                 placeholder='Ciudad...'
             />
-            <button onClick={handleOnSearch}><IoSearchOutline /></button>
-        </div>
+            <button type='submit'><IoSearchOutline/></button>
+        </form>
     )
 };
