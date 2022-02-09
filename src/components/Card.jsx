@@ -7,8 +7,9 @@ import icon_03n from '../assets/03n.png'
 
 import styles from './Card.module.css'
 import {IoCloseCircleOutline} from "react-icons/io5";
+import {Link} from "react-router-dom";
 
-export default function Card({max, min, name, img, onClose}) {
+export default function Card({max, min, name, img, onClose, id}) {
     // acá va tu código
     function handleOnclose() {
         if (typeof onClose === 'function') onClose();
@@ -19,7 +20,9 @@ export default function Card({max, min, name, img, onClose}) {
             <button className={styles.closeButton} onClick={handleOnclose}>
                 <IoCloseCircleOutline/>
             </button>
-            <span className={styles.cityName}>{name}</span>
+            <Link className={styles.cityName} to={`/ciudad/${id}`}>
+                <span>{name}</span>
+            </Link>
             <CardTemp label='Min' value={min}/>
             <CardTemp label='Max' value={max}/>
             <WeatherIcon icon={img}/>
@@ -30,7 +33,8 @@ export default function Card({max, min, name, img, onClose}) {
 
 function WeatherIcon({icon}) {
     switch (icon) {
-        case "03n": return <img src={icon_03n} alt='lluvia'/>
+        case "03n":
+            return <img src={icon_03n} alt='lluvia'/>
         default:
             return <img src={icon_09d} alt='lluvia'/>
     }

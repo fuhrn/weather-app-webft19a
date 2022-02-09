@@ -12,6 +12,7 @@ export default function Cards({cities, onRemove}) {
         {cities.map( city =>
         <Card
             key={city.id} //{index+city.name} una opcion de ultima
+            id={city.id}
             min={city.min}
             max={city.max}
             name={city.name}
